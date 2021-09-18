@@ -1,7 +1,7 @@
 const Query = require('../data/data_access.js');
 
 const UserService = {
-    getUser: (id) => {
+    getUser: ({ id }) => {
         const user = Query.getUserById(id);
         return user;
     },
@@ -11,7 +11,7 @@ const UserService = {
         return user;
     },
 
-    deleteUser: (id) => {
+    deleteUser: ({ id }) => {
         const user = Query.deleteUserById(id);
         return user;
     }

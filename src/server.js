@@ -10,9 +10,12 @@ async function testConnection() {
     return cn.client;
 }
 
-const cn = testConnection().then(obj => console.log(obj));  
-console.log(cn);
+testConnection().then(obj => console.log(obj));
+
 app.use('/user', User_router);
 
 
-app.listen(process.env.PORT, () => { console.log(`connected on ${process.env.PORT}`); });
+app.listen(process.env.PORT, (err) => { 
+    if (err) throw err;
+    console.log(`connected on ${process.env.PORT}`); 
+});
