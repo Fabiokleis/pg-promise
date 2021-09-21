@@ -5,7 +5,7 @@ const Joi = require('joi');
 const expValidation = (value, helpers) => {
     const now = new Date();
     const exp = new Date(value * 1000);
-    if (exp.getHours() <= now.getHours() && exp.getDate() == now.getDate()) {
+    if (exp.getHours >= now.getHours && exp.getDate() == now.getDate()) {
         return value;
     } else {
         return helpers.message('token expired, login again!');
@@ -84,8 +84,18 @@ const UserValidator = {
             exp: Joi.number()
                 .required().custom(expValidation, 'jwt expiration validatite')
     })
-    return UserSchema.validateAsync(body)
-  }
+        return UserSchema.validateAsync(body);
+   },
+
+    UserName: (query) => {
+        const UserSchema = Joi.object().keys({
+            name: Joi.string()
+                .pattern(/^[a-zA-Z][A-Za-z_0-9]{2,30}$/)
+                .required()
+        })
+        return UserSchema.validateAsync(query);
+    }
+
  
 }
 

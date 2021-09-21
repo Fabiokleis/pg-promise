@@ -13,7 +13,17 @@ const Query = {
         });
         return user;
     },
-    
+
+    updateUserName: (name, id) => {
+        const user = db.query('UPDATE users SET name = $<name> WHERE id = $<id> RETURNING id, name, email', { name, id });
+        return user;
+    },
+
+    verifyIfNameExist: (name) => {
+        const user = db.query('SELECT id FROM users WHERE name = $<name>', { name },);
+        return user;
+    },
+
     verifyEmail: (email) => {
         const user = db.query('SELECT id, name, email, password FROM users WHERE email = $<email>', { email });
         return user;

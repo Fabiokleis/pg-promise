@@ -18,7 +18,7 @@ router.post('/', express.json(), async (req, res, next) => {
     try {
         const data = await UserValidation.createUser(req.body);
         const user = await UserService.createUser(data);
-        res.status(200).json(user);
+        res.status(201).json(user);
     } catch(err) {
         next(err)
     }
@@ -37,6 +37,24 @@ router.post('/login', express.json(), async (req, res, next) => {
         } else { 
             next('email or password wrong');
         } 
+
+    } catch(err) {
+        next(err);
+    }
+});
+
+router.put('/', Auth, express.urlencoded({ extended: true }), async (req, res, next) => {
+    try {
+        const decoded = await UserValidation.jwtUserDecoded(req.body);
+        const name = await UserValidation.UserName(req.query);
+        const flag = await UserService.verifyIfNameExist(name);
+        if (!flag.length) {
+            const user = await UserService.updateUserName(decoded.id, name);
+            res.status(200).json({ user });
+
+        } else {
+            next('name already exists!');
+        }
 
     } catch(err) {
         next(err);
