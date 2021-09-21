@@ -48,7 +48,7 @@ router.post('/login', express.json(), async (req, res, next) => {
 
 router.put('/', Auth, express.urlencoded({ extended: true }), async (req, res, next) => {
     try {
-        const decoded = await UserValidation.jwtUserDecoded(req.body);
+        const decoded = await UserValidation.jwtUserDecoded(req.user);
         const name = await UserValidation.UserName(req.query);
         const flag = await UserService.verifyIfNameExist(name);
         if (!flag.length) {
@@ -67,7 +67,7 @@ router.put('/', Auth, express.urlencoded({ extended: true }), async (req, res, n
 
 router.delete('/', Auth, async (req, res, next) => {
     try {
-        const decoded = await UserValidation.jwtUserDecoded(req.body);
+        const decoded = await UserValidation.jwtUserDecoded(req.user);
         const user = await UserService.deleteUser(decoded);
         res.status(200).json({ id: decoded.id });
     } catch(err) {

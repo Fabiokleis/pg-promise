@@ -1,8 +1,8 @@
-create table users (
-    id serial primary key,
-    name text not null unique,
-    email text not null unique,
-    password text not null,
-    created_at timestamp not null default current_timestamp,
-    updated_at timestamp not null default current_timestamp
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
