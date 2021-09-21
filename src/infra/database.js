@@ -7,8 +7,9 @@ const local = {
     password: process.env.PASSWORD
 }
 
+// postgres remote on elephantsql.com
 const elephant = process.env.CONNECTION;
 
-const db = pgp(local);
+const db = pgp(elephant);
 
 module.exports = db;
