@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "create": "./src/infra/db.sh",
-    "dev": "nodemon ./src/server.js"
+    "dev": "nodemon ./src/server.js",
+    "test": "jest --env node"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "pg-promise": "^10.11.0"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0"
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
+    "jest": "^27.2.1"
   }
 }
