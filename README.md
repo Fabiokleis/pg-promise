@@ -3,10 +3,6 @@
 A back-end application, using **nodejs** with **express**, **pg-promise**, **joi**, **jsonwebtoken**, **bcrypt**, **dotenv** and **postgresql**. To run the app clone this repo.
 
 ```
-git init
-```
-
-```
 git clone https://github.com/Fabiokleis/pg-promise
 ```
 
