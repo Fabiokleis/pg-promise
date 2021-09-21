@@ -19,9 +19,6 @@ npm run createdb // to create a database and tables (calls ./src/infra/createdb.
 npm run dev // to run with nodemon
 ```
 ```
-npm run 
-```
-```
 npm start
 ```
 
