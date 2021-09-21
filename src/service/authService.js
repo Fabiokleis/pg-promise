@@ -7,6 +7,7 @@ const Auth = (req, res, next) => {
         req.body = user;
         next();
     } catch (err) {
+        err.statusCode = 400;
         next(err);
     }
 }

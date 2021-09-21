@@ -19,8 +19,7 @@ try {
 app.use('/user', userRouter);
 
 app.use((err, req, res, next) => {
-    console.log(err);
-    res.status(err.statusCode || 500).json(err.message);
+    res.status(err.statusCode || 500).json(err.message || 'server internal error! try again later...');
 });
 
 app.listen(process.env.PORT, (err) => { 
