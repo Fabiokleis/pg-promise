@@ -1,6 +1,6 @@
 # CRUD
 
-A back-end application, using **nodejs** with **express**, **pg-promise**, **joi**, **jsonwebtoken**, **bcrypt**, **dotenv** and **postgresql**. To run the app clone this repo.
+A back-end application, using **nodejs** with **express**, **pg-promise**, **joi**, **jsonwebtoken**, **axios**, **jest**, **bcrypt**, **dotenv** and **postgresql**. To run the app clone this repo.
 
 ```
 git clone https://github.com/Fabiokleis/pg-promise
@@ -10,13 +10,15 @@ git clone https://github.com/Fabiokleis/pg-promise
 
 if you has **postgres** installed on local machine follow this steps:
 
-**package.json** has 3 scripts
+**package.json** has 3 scripts to run
 
 ```
-npm run create // to create a database and tables (shell script, calls ./src/infra/db.sh)
+npm run createdb // to create a database and tables (calls ./src/infra/createdb.sh)
 ```
 ```
 npm run dev // to run with nodemon
+```
+npm run 
 ```
 ```
 npm start
@@ -33,4 +35,17 @@ const db = pgp(local); // put elephant to run remote
 after this run with 
 ```
 npm start
+```
+
+# Test 
+
+Only test in local machine, if you are local, follow this steps:
+
+**package.json** has 2 scripts to test
+
+```
+npm run test // calls jest
+```
+```
+npm run cleardb // drop and create a empty database (calls ./src/infra/cleardb.sh)
 ```
