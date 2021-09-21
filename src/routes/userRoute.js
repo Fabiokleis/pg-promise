@@ -10,7 +10,8 @@ router.get('/:id', express.urlencoded({ extended: true }), async (req, res, next
         const user = await UserService.getUser(id);
         res.status(200).json(user);
     } catch(err) {
-        next(err)
+        err.statusCode = 404;
+        next(err);
     }
 });
 
@@ -18,9 +19,10 @@ router.post('/', express.json(), async (req, res, next) => {
     try {
         const data = await UserValidation.createUser(req.body);
         const user = await UserService.createUser(data);
-        res.status(200).json(user);
+        res.status(201).json(user);
     } catch(err) {
-        next(err)
+        err.statusCode = 400;
+        next(err);
     }
 });
 
@@ -33,12 +35,32 @@ router.post('/login', express.json(), async (req, res, next) => {
         if (flag) {     
             const Authorization = await UserService.loginUser(data, user);
             res.header({ Authorization });
-            res.status(200).json({ message: "success login!"});
+            res.status(200).json({ message: 'success login!'});
         } else { 
-            next('email or password wrong');
+            throw new Error('email or password wrong');
         } 
 
     } catch(err) {
+        err.statusCode = 400;
+        next(err);
+    }
+});
+
+router.put('/', Auth, express.urlencoded({ extended: true }), async (req, res, next) => {
+    try {
+        const decoded = await UserValidation.jwtUserDecoded(req.body);
+        const name = await UserValidation.UserName(req.query);
+        const flag = await UserService.verifyIfNameExist(name);
+        if (!flag.length) {
+            const user = await UserService.updateUserName(decoded.id, name);
+            res.status(200).json({ user });
+
+        } else {
+            throw new Error('name already exists!');
+        }
+
+    } catch(err) {
+        err.statusCode = 400;
         next(err);
     }
 });
@@ -47,9 +69,10 @@ router.delete('/', Auth, async (req, res, next) => {
     try {
         const decoded = await UserValidation.jwtUserDecoded(req.body);
         const user = await UserService.deleteUser(decoded);
-        res.status(200).json(user);
+        res.status(200).json({ id: decoded.id });
     } catch(err) {
-        next(err)
+        err.statusCode = 401
+        next(err);
     }
 });
 

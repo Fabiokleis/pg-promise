@@ -14,6 +14,16 @@ const UserService = {
         return user;
     },
 
+    updateUserName: (id, { name }) => {
+        const user = Query.updateUserName(name, id);
+        return user;
+    },
+
+    verifyIfNameExist: ({ name }) => {
+        const user = Query.verifyIfNameExist(name);
+        return user;
+    },
+
     verifyEmail: (data) => {
         const user = Query.verifyEmail(data.email);
         return user;

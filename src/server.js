@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const User_router = require('./routes/userRoute.js');
+const userRouter = require('./routes/userRoute.js');
 const db = require('./infra/database.js');
 const app = express();
 
@@ -11,13 +11,16 @@ async function testConnection() {
 }
 
 try {
-    testConnection()
+    testConnection();
 } catch (err) {
     throw err;
 }
 
-app.use('/user', User_router);
+app.use('/user', userRouter);
 
+app.use((err, req, res, next) => {
+    res.status(err.statusCode || 500).json(err.message || 'server internal error! try again later...');
+});
 
 app.listen(process.env.PORT, (err) => { 
     if (err) throw err;
