@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node ./src/server.js",
-    "create": "./src/infra/db.sh",
+    "createdb": "./src/infra/createdb.sh",
+    "cleardb": "./src/infra/cleardb.sh",
     "dev": "nodemon ./src/server.js",
     "test": "jest --env node"
   },
