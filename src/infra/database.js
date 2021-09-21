@@ -10,6 +10,6 @@ const local = {
 // postgres remote on elephantsql.com
 const elephant = process.env.CONNECTION;
 
-const db = pgp(elephant);
+const db = pgp(local);
 
 module.exports = db;
