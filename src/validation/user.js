@@ -17,7 +17,6 @@ const UserValidator = {
         const UserSchema = Joi.object().keys({
             id: Joi.number()
                 .min(1)
-                .max(1000)
                 .required()
         });
 
