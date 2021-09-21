@@ -13,7 +13,7 @@ if you has **postgres** installed on local machine follow this steps:
 **package.json** has 3 scripts
 
 ```
-npm run create // to create a database and tables
+npm run create // to create a database and tables (shell script, calls ./src/infra/db.sh)
 ```
 ```
 npm run dev // to run with nodemon
