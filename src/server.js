@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const User_router = require('./routes/userRoute.js');
+const userRouter = require('./routes/userRoute.js');
 const db = require('./infra/database.js');
 const app = express();
 
@@ -16,7 +16,7 @@ try {
     throw err;
 }
 
-app.use('/user', User_router);
+app.use('/user', userRouter);
 
 
 app.listen(process.env.PORT, (err) => { 

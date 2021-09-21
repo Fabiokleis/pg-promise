@@ -1,14 +1,14 @@
-const pgp = require('pg-promise')({});
+const pgp = require('pg-promise')();
 
 const local = {
     host: process.env.HOST,
-    database: process.env.DATABASE,
     user: process.env.USER,
-    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD
 }
 
 const elephant = process.env.CONNECTION;
 
-const db = pgp(elephant);
+const db = pgp(local);
 
 module.exports = db;
