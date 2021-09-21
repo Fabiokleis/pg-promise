@@ -47,7 +47,7 @@ router.delete('/', Auth, async (req, res, next) => {
     try {
         const decoded = await UserValidation.jwtUserDecoded(req.body);
         const user = await UserService.deleteUser(decoded);
-        res.status(200).json(user);
+        res.status(200).json({ id: decoded.id });
     } catch(err) {
         next(err)
     }
