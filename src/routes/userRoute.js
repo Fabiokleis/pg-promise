@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const UserService = require('../service/user_service.js');
+const UserService = require('../service/userService.js');
 const UserValidation = require('../validation/user.js');
 
 router.get('/:id', express.urlencoded({ extended: true }), async (req, res, next) => {

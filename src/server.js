@@ -1,6 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv').config();
-const User_router = require('./routes/user_route.js');
+const User_router = require('./routes/userRoute.js');
 const db = require('./infra/database.js');
 const app = express();
 
@@ -10,7 +10,11 @@ async function testConnection() {
     return cn.client;
 }
 
-testConnection().then(obj => console.log(obj));
+try {
+    testConnection()
+} catch (err) {
+    throw err;
+}
 
 app.use('/user', User_router);
 

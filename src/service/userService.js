@@ -1,4 +1,4 @@
-const Query = require('../data/data_access.js');
+const Query = require('../data/dataAccess.js');
 
 const UserService = {
     getUser: ({ id }) => {

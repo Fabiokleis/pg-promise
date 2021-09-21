@@ -2,9 +2,9 @@ const pgp = require('pg-promise')({});
 
 const cn = {
     host: process.env.HOST,
-    database: process.env.DB,
+    database: process.env.DATABASE,
     user: process.env.USER,
-    password: process.env.PASSWD
+    password: process.env.PASSWORD
 }
 
 const db = pgp(cn);
