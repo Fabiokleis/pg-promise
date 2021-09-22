@@ -48,5 +48,5 @@ Only test in local machine, if you are local, follow this steps:
 npm run test // calls jest
 ```
 ```
-npm run cleardb // drop and create a empty database (calls ./src/infra/cleardb.sh)
+npm run cleardb // drop table and create a empty table (calls ./src/infra/cleardb.sh)
 ```

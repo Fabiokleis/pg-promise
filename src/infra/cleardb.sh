@@ -1,6 +1,7 @@
 #!/bin/sh
 
 psql -U postgres <<EOF
-DROP DATABASE exppg;
+\c exppg
+DROP TABLE users;
 \i ./src/infra/create.sql
 EOF
