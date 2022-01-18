@@ -1,9 +1,10 @@
 const express = require('express');
-const dotenv = require('dotenv').config();
+//const dotenv = require('dotenv').config();
 const userRouter = require('./routes/userRoute.js');
 const db = require('./infra/database.js');
 const app = express();
 
+/*
 async function testConnection() {
     const cn = await db.connect();
     cn.done();
@@ -15,7 +16,7 @@ try {
 } catch (err) {
     throw err;
 }
-
+*/
 app.use('/user', userRouter);
 
 app.use((err, req, res, next) => {
