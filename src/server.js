@@ -17,6 +17,9 @@ try {
     throw err;
 }
 */
+app.get('/', (req, res) => {
+    res.send("Hello, World!");
+});
 app.use('/user', userRouter);
 
 app.use((err, req, res, next) => {
